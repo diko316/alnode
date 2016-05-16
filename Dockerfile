@@ -52,3 +52,4 @@ RUN cd /tmp && \
 		/usr/lib/node_modules/npm/doc \
 		/usr/lib/node_modules/npm/html
 	
+CMD /bin/sh
