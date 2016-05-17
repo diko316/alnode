@@ -59,6 +59,13 @@ RUN mkdir -p $PROJECT_ROOT && \
         	--sbin-path=/usr/local/sbin/nginx && \
 	make && \
 	make install && \
+	mkdir -p /etc/nginx/conf/conf.d && \
+	cp -f /opt/tools/nginx/conf/nginx.conf /etc/nginx/conf/nginx.conf && \
+	cp -f /opt/tools/nginx/conf/app.conf /etc/nginx/conf/conf.d/app.conf && \
 	auto-cleanup
+
+
+
+WORKDIR $PROJECT_ROOT
 
 CMD /bin/sh
