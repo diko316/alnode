@@ -1,27 +1,25 @@
 FROM alpine
 
-ENV NODE_VERSION=5.11.1 NPM_VERSION=latest NGINX_VERSION=1.10.0 PROJECT_ROOT=/opt/app APP_SOURCE=/opt/app-source
+ENV NODE_VERSION=5.11.1 NPM_VERSION=latest NGINX_VERSION=1.10.0 APP_DIR=/opt/app APP_SOURCE=/opt/app-source
 
 COPY ./tools /opt/tools
 
-RUN mkdir -p $PROJECT_ROOT && \
-	mkdir -p $APP_SOURCE && \
-	ln -s /opt/tools/installer/install.sh /usr/local/bin/auto-build && \
-	ln -s /opt/tools/installer/install-cleanup.sh /usr/local/bin/auto-cleanup && \
-	ln -s /opt/tools/watcher/auto-sync.sh /usr/local/bin/auto-sync && \
-	ln -s /opt/tools/watcher/sync.sh /usr/local/bin/source-sync && \
-	auto-build \
-		--apk-permanent \
-			git \
+RUN mkdir -p /opt/source \
+	mkdir -p /opt/app \
+	cd /tmp && \
+	apk add --no-cache \
 			curl \
 			inotify-tools \
-			rsync \
+			git \
+			python \
+			linux-headers \
+			paxctl \
+			libgcc \
+			libstdc++ \
+			openssl-dev \
 			pcre-dev \
 			zlib-dev \
-			openssl-dev \
-		--build-tools \
-		--no-cleanup && \
-	cd /tmp && \
+			build-base && \
 	curl -o node-v${NODE_VERSION}.tar.gz -SsL https://nodejs.org/dist/latest-v5.x/node-v${NODE_VERSION}.tar.gz && \
 	tar -zxf node-v${NODE_VERSION}.tar.gz && \
 	cd node-v${NODE_VERSION} && \
@@ -57,6 +55,23 @@ RUN mkdir -p $PROJECT_ROOT && \
         	--sbin-path=/usr/local/sbin/nginx && \
 	make && \
 	make install && \
-	auto-cleanup
+	cd / && \
+	apk del \
+		curl \
+		python \
+		linux-headers \
+		paxctl \
+		build-base && \
+	rm -rf /etc/ssl \
+		/usr/share/man \
+		/usr/include \
+		/tmp/* \
+		/var/cache/apk/* \
+		/root/.npm \
+		/root/.node-gyp \
+		/root/.gnupg \
+		/usr/lib/node_modules/npm/man \
+		/usr/lib/node_modules/npm/doc \
+		/usr/lib/node_modules/npm/html
 
 CMD /bin/sh
