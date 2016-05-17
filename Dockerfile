@@ -2,6 +2,8 @@ FROM alpine
 
 ENV NODE_VERSION=5.11.1 NPM_VERSION=latest NGINX_VERSION=1.10.0 PROJECT_ROOT=/opt/app APP_SOURCE=/opt/app-source
 
+EXPOSE 3000
+
 COPY ./tools /opt/tools
 
 RUN mkdir -p $PROJECT_ROOT && \
