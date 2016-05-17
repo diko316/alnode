@@ -12,6 +12,7 @@ RUN mkdir -p $PROJECT_ROOT && \
 	ln -s /opt/tools/installer/install-cleanup.sh /usr/local/bin/auto-cleanup && \
 	ln -s /opt/tools/watcher/auto-sync.sh /usr/local/bin/auto-sync && \
 	ln -s /opt/tools/watcher/sync.sh /usr/local/bin/source-sync && \
+	ln -s /opt/tools/nginx/start.sh /usr/local/bin/run-nginx && \
 	auto-build \
 		--apk-permanent \
 			git \
