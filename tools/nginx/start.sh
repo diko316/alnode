@@ -19,7 +19,7 @@ fi
 
 if [ -f "${APP_CONF}" ] && [ -d "${CONF_DIR}" ] && [ -w "${CONF_DIR}" ]; then
     # remove if exist
-    [ -f "${APP_CONF_FILE}" ] && rm -Rf ${CONF_DIR}/app.conf
+    [ -f "${APP_CONF_FILE}" ] && rm -Rf "${APP_CONF_FILE}"
 
     echo "Using your Application Nginx config: ${APP_CONF}"
     ln -s "${APP_CONF}" "${APP_CONF_FILE}" || exit 2
