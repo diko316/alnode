@@ -15,6 +15,7 @@ RUN mkdir -p $PROJECT_ROOT && \
 	ln -s /opt/tools/nginx/start.sh /usr/local/bin/run-nginx && \
 	auto-build \
 		--apk-permanent \
+			bash \
 			git \
 			curl \
 			inotify-tools \

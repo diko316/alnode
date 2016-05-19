@@ -92,27 +92,27 @@ fi
 #####################################################
 # Install Apk packages
 #####################################################
-# permanent
-if [ -f "${APK_PERMANENT_FILE}" ]; then
-    cat "${APK_PERMANENT_FILE}" | xargs -r -t apk add --no-cache || exit 2
-fi
-
 # volatile
 if [ -f "${APK_VOLATILE_FILE}" ]; then
     cat "${APK_VOLATILE_FILE}" | xargs -r -t apk add --no-cache || exit 2
 fi
 
+# permanent
+if [ -f "${APK_PERMANENT_FILE}" ]; then
+    cat "${APK_PERMANENT_FILE}" | xargs -r -t apk add --no-cache || exit 2
+fi
+
 #####################################################
 # Install GLOBAL NPM packages
 #####################################################
+# volatile
+if [ -f "${NPM_GLOBAL_VOLATILE_FILE}" ]; then
+    cat "${NPM_GLOBAL_VOLATILE_FILE}" | xargs -r -t npm install -g -y -dd || ex$
+fi
+
 # permanent
 if [ -f "${NPM_GLOBAL_PERMANENT_FILE}" ]; then
     cat "${NPM_GLOBAL_PERMANENT_FILE}" | xargs -r -t npm install -g -y -dd || exit 3
-fi
-
-# volatile
-if [ -f "${NPM_GLOBAL_VOLATILE_FILE}" ]; then
-    cat "${NPM_GLOBAL_VOLATILE_FILE}" | xargs -r -t npm install -g -y -dd || exit 3
 fi
 
 
