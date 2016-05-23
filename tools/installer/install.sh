@@ -75,13 +75,17 @@ done
 if [ -f "${BOWER_PACKAGE_FILE}" ] || [ -f "${NPM_PACKAGE_FILE}" ] || [ -f "${NPM_GLOBAL_PERMANENT_MODE}" ] || [ -f "${NPM_GLOBAL_MODE}" ] || [ "${USE_BUILD_TOOLS}" = "true" ]; then
 
     # must install build tools
+    # make gcc g++ python linux-headers paxctl libgcc libstdc++
+    # luajit-dev pcre-dev openssl-dev libatomic_ops-dev
     printf '%s\n%s\n%s\n%s\n%s\n%s\n'\
 			python \
+            make \
+            gcc \
+            g++ \
 			linux-headers \
 			paxctl \
 			libgcc \
-			libstdc++ \
-			build-base >> ${APK_VOLATILE_FILE}
+			libstdc++ >> ${APK_VOLATILE_FILE}
 
     if [ -f "${BOWER_PACKAGE_FILE}" ]; then
         echo "bower" >> ${NPM_GLOBAL_VOLATILE_FILE}
@@ -92,15 +96,18 @@ fi
 #####################################################
 # Install Apk packages
 #####################################################
-# volatile
-if [ -f "${APK_VOLATILE_FILE}" ]; then
-    cat "${APK_VOLATILE_FILE}" | xargs -r -t apk add --no-cache || exit 2
+if [ -f "${APK_VOLATILE_FILE}" ] || [ -f "${APK_PERMANENT_FILE}" ]; then
+    # volatile
+    if [ -f "${APK_VOLATILE_FILE}" ]; then
+        cat "${APK_VOLATILE_FILE}" | xargs -r -t apk add --no-cache || exit 2
+    fi
+
+    # permanent
+    if [ -f "${APK_PERMANENT_FILE}" ]; then
+        cat "${APK_PERMANENT_FILE}" | xargs -r -t apk add --no-cache || exit 2
+    fi
 fi
 
-# permanent
-if [ -f "${APK_PERMANENT_FILE}" ]; then
-    cat "${APK_PERMANENT_FILE}" | xargs -r -t apk add --no-cache || exit 2
-fi
 
 #####################################################
 # Install GLOBAL NPM packages

@@ -4,6 +4,14 @@
 
 
 #####################################################
+# Uninstall NPM packages
+#####################################################
+# volatile
+if [ -f "${NPM_GLOBAL_VOLATILE_FILE}" ]; then
+    cat "${NPM_GLOBAL_VOLATILE_FILE}" | xargs -r -t npm uninstall -dd -y -g || exit 1
+fi
+
+#####################################################
 # Uninstall Apk packages
 #####################################################
 # volatile
@@ -11,13 +19,14 @@ if [ -f "${APK_VOLATILE_FILE}" ]; then
     cat "${APK_VOLATILE_FILE}" | xargs -r -t apk del || exit 1
 fi
 
+
 #####################################################
-# Uninstall NPM packages
+# Purge install data directories
 #####################################################
-# volatile
-if [ -f "${NPM_GLOBAL_VOLATILE_FILE}" ]; then
-    cat "${NPM_GLOBAL_VOLATILE_FILE}" | xargs -r -t npm uninstall -dd -y -g || exit 1
+if [ -d "${INSTALL_DATA_DIR}" ]; then
+    rm -Rf ${INSTALL_DATA_DIR} || true
 fi
+
 
 #####################################################
 # Purge directories
