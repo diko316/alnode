@@ -79,13 +79,14 @@ if [ -f "${BOWER_PACKAGE_FILE}" ] || [ -f "${NPM_PACKAGE_FILE}" ] || [ -f "${NPM
     # luajit-dev pcre-dev openssl-dev libatomic_ops-dev
     printf '%s\n%s\n%s\n%s\n%s\n%s\n'\
 			python \
-            make \
-            gcc \
-            g++ \
 			linux-headers \
+            build-base \
 			paxctl \
 			libgcc \
 			libstdc++ >> ${APK_VOLATILE_FILE}
+
+    #add curl make gcc g++ python linux-headers paxctl gnupg libgcc libstdc++
+    #del curl make gcc g++ python linux-headers paxctl gnupg libgcc libstdc++
 
     if [ -f "${BOWER_PACKAGE_FILE}" ]; then
         echo "bower" >> ${NPM_GLOBAL_VOLATILE_FILE}

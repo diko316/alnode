@@ -3,7 +3,7 @@ curl -o node-v${NODE_VERSION}.tar.gz -SsL https://nodejs.org/dist/latest-v5.x/no
 tar -zxf node-v${NODE_VERSION}.tar.gz || exit 1
 cd node-v${NODE_VERSION} || exit 1
 export GYP_DEFINES="linux_use_gold_flags=0"
-./configure --prefix=/usr || exit 1
+./configure --fully-static --prefix=/usr || exit 1
 NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)
 make -j${NPROC} -C out mksnapshot BUILDTYPE=Release || exit 1
 paxctl -cm out/Release/mksnapshot || exit 1
