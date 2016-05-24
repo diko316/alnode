@@ -37,8 +37,8 @@ while [ $# -gt 0 ]; do
         MODE=NPM_GLOBAL_MODE
         ;;
     "--no-builer")
-	NO_BUILD_TOOLS=true
-	;;
+        NO_BUILD_TOOLS=true
+        ;;
     "--build-tools")
         USE_BUILD_TOOLS=true
         ;;
