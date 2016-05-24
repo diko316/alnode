@@ -36,6 +36,9 @@ while [ $# -gt 0 ]; do
     "--npm-global")
         MODE=NPM_GLOBAL_MODE
         ;;
+    "--no-builer")
+	NO_BUILD_TOOLS=true
+	;;
     "--build-tools")
         USE_BUILD_TOOLS=true
         ;;
@@ -77,13 +80,15 @@ if [ -f "${BOWER_PACKAGE_FILE}" ] || [ -f "${NPM_PACKAGE_FILE}" ] || [ -f "${NPM
     # must install build tools
     # make gcc g++ python linux-headers paxctl libgcc libstdc++
     # luajit-dev pcre-dev openssl-dev libatomic_ops-dev
-    printf '%s\n%s\n%s\n%s\n%s\n%s\n'\
-			python \
-			linux-headers \
-            build-base \
-			paxctl \
-			libgcc \
-			libstdc++ >> ${APK_VOLATILE_FILE}
+    if [ "${NO_BUILD_TOOLS}" != "true" ]; then
+        printf '%s\n%s\n%s\n%s\n%s\n%s\n'\
+                python \
+                linux-headers \
+                build-base \
+                paxctl \
+                libgcc \
+                libstdc++ >> ${APK_VOLATILE_FILE}
+    fi
 
     #add curl make gcc g++ python linux-headers paxctl gnupg libgcc libstdc++
     #del curl make gcc g++ python linux-headers paxctl gnupg libgcc libstdc++
