@@ -75,7 +75,7 @@ done
 #####################################################
 # Pre install
 #####################################################
-#apk update && \
+apk update
 #apk add tar curl ca-certificates --no-cache && \
 #rm -rf /var/cache/apk/*
 
