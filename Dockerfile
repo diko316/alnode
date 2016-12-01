@@ -15,6 +15,7 @@ RUN mkdir -p $PROJECT_ROOT && \
 	ln -s $APP_TOOLS/nginx/start.sh /usr/local/bin/run-nginx && \
 	auto-build \
 		--apk-permanent \
+            tar \
 			bash \
 			git \
 			curl \
