@@ -76,11 +76,6 @@ done
 # Pre install
 #####################################################
 apk update
-#apk add tar curl ca-certificates --no-cache && \
-#rm -rf /var/cache/apk/*
-
-
-
 if [ -f "${BOWER_PACKAGE_FILE}" ] || [ -f "${NPM_PACKAGE_FILE}" ] || [ -f "${NPM_GLOBAL_PERMANENT_MODE}" ] || [ -f "${NPM_GLOBAL_MODE}" ] || [ "${USE_BUILD_TOOLS}" = "true" ]; then
 
     # must install build tools

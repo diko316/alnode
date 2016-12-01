@@ -1,3 +1,4 @@
+echo "Installing NginX ${NGINX_VERSION}..."
 cd /tmp || exit 1
 curl -o nginx-${NGINX_VERSION}.tar.gz -sSL http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz || exit 1
 tar -zxf nginx-${NGINX_VERSION}.tar.gz || exit 1
