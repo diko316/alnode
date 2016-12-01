@@ -17,7 +17,7 @@
 #
 #exit 0
 
-
+echo "Installing Node ${VERSION}"
 
 cd /tmp || exit 1
 curl -o node-v${NODE_VERSION}.tar.gz -SsL https://nodejs.org/dist/v${VERSION}/node-v${VERSION}.tar.gz || exit 1
