@@ -17,10 +17,10 @@
 #
 #exit 0
 
-echo "Installing Node ${VERSION}"
+echo "Installing Node ${NODE_VERSION}..."
 
 cd /tmp || exit 1
-curl -o node-v${NODE_VERSION}.tar.gz -SsL https://nodejs.org/dist/v${VERSION}/node-v${VERSION}.tar.gz || exit 1
+curl -o node-v${NODE_VERSION}.tar.gz -SsL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}.tar.gz || exit 1
 tar -zxf node-v${NODE_VERSION}.tar.gz || exit 1
 cd node-v${NODE_VERSION} || exit 1
 export GYP_DEFINES="linux_use_gold_flags=0"
