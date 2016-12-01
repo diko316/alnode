@@ -87,13 +87,15 @@ if [ -f "${BOWER_PACKAGE_FILE}" ] || [ -f "${NPM_PACKAGE_FILE}" ] || [ -f "${NPM
     # make gcc g++ python linux-headers paxctl libgcc libstdc++
     # luajit-dev pcre-dev openssl-dev libatomic_ops-dev
     if [ "${NO_BUILD_TOOLS}" != "true" ]; then
-        printf '%s\n%s\n%s\n%s\n%s\n%s\n'\
+        printf '%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n'\
+                curl \
                 python \
                 linux-headers \
                 build-base \
                 paxctl \
                 libgcc \
-                libstdc++ >> ${APK_VOLATILE_FILE}
+                libstdc++ \
+                gnupg >> ${APK_VOLATILE_FILE}
     fi
 
     #add curl make gcc g++ python linux-headers paxctl gnupg libgcc libstdc++
