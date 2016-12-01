@@ -13,8 +13,6 @@ RUN mkdir -p $PROJECT_ROOT && \
 	ln -s $APP_TOOLS/watcher/auto-sync.sh /usr/local/bin/auto-sync && \
 	ln -s $APP_TOOLS/watcher/sync.sh /usr/local/bin/source-sync && \
 	ln -s $APP_TOOLS/nginx/start.sh /usr/local/bin/run-nginx && \
-    apk update && \
-    apk add tar --no-cache && \
 	auto-build \
 		--apk-permanent \
 			bash \
