@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.2
 
 ENV NODE_VERSION=5.11.1 NPM_VERSION=latest NGINX_VERSION=1.10.0 PROJECT_ROOT=/opt/app APP_SOURCE=/opt/app-source APP_TOOLS=/opt/tools
 
