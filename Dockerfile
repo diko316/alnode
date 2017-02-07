@@ -1,6 +1,6 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
-ENV NODE_VERSION=6.9.1 NPM_VERSION=latest NGINX_VERSION=1.10.0 PROJECT_ROOT=/opt/app APP_SOURCE=/opt/app-source APP_TOOLS=/opt/tools
+ENV NODE_VERSION=7.5.0 NPM_VERSION=latest NGINX_VERSION=1.11.9 PROJECT_ROOT=/opt/app APP_SOURCE=/opt/app-source APP_TOOLS=/opt/tools
 
 EXPOSE 3000
 
