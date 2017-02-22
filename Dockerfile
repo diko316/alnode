@@ -20,10 +20,10 @@ RUN mkdir -p $PROJECT_ROOT && \
 			curl \
 			inotify-tools \
 			rsync \
-		--apk \
-			musl-dev \
 			openssl-dev \
 			zlib-dev \
+		--apk \
+			musl-dev \
 			pcre-dev \
 		--build-tools \
 		--no-cleanup && \
