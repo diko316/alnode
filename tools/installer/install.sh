@@ -39,6 +39,9 @@ while [ $# -gt 0 ]; do
     "--no-builer")
         NO_BUILD_TOOLS=true
         ;;
+    "--no-builder")
+        NO_BUILD_TOOLS=true
+        ;;
     "--build-tools")
         USE_BUILD_TOOLS=true
         ;;
@@ -82,7 +85,7 @@ if [ -f "${BOWER_PACKAGE_FILE}" ] || [ -f "${NPM_PACKAGE_FILE}" ] || [ -f "${NPM
     # make gcc g++ python linux-headers paxctl libgcc libstdc++
     # luajit-dev pcre-dev openssl-dev libatomic_ops-dev
     if [ "${NO_BUILD_TOOLS}" != "true" ]; then
-        printf '%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n'\
+        printf '%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n' \
                 curl \
                 python \
                 linux-headers \
